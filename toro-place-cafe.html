@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toro Place Cafe — Salinas, CA</title>
+<meta name="description" content="Toro Place Cafe — a family-run diner in a converted 1930s gas station on Highway 68, Salinas, CA. Breakfast, lunch, and homemade cinnamon rolls since forever.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #F2EAD8;
+    --cream-light: #FAF6EE;
+    --rust: #A83C1E;
+    --rust-dark: #8A3018;
+    --pump-green: #2F4A3C;
+    --mustard: #D4A017;
+    --ink: #2B2320;
+    --line: rgba(43,35,32,0.15);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Lora', serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+  a{color:inherit;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;}
+
+  /* ===== Top ticker bar ===== */
+  .ticker{
+    background:var(--ink);
+    color:var(--cream-light);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:9px 0;
+    text-align:center;
+  }
+  .ticker span{opacity:0.85;}
+  .ticker strong{color:var(--mustard); font-weight:600;}
+
+  /* ===== Header ===== */
+  header{
+    padding:22px 0;
+    border-bottom:3px solid var(--ink);
+    background:var(--cream-light);
+  }
+  .header-row{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .brand{
+    font-family:'Alfa Slab One', cursive;
+    font-size:22px;
+    color:var(--rust);
+    text-decoration:none;
+    letter-spacing:0.01em;
+  }
+  nav{display:flex; gap:26px; font-family:'IBM Plex Mono', monospace; font-size:13px; text-transform:uppercase; letter-spacing:0.06em;}
+  nav a{text-decoration:none; border-bottom:2px solid transparent; padding-bottom:3px; transition:border-color .2s;}
+  nav a:hover, nav a:focus-visible{border-color:var(--rust);}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:70px 0 90px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(212,160,23,0.14), transparent 45%),
+      var(--cream);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--pump-green);
+    margin:0 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:26px; height:2px; background:var(--pump-green); display:inline-block;}
+  h1.headline{
+    font-family:'Alfa Slab One', cursive;
+    font-size:clamp(40px, 6vw, 66px);
+    line-height:1.02;
+    color:var(--ink);
+    margin:0 0 22px;
+  }
+  h1.headline em{
+    font-style:normal;
+    color:var(--rust);
+  }
+  .hero-sub{
+    font-size:18px;
+    max-width:46ch;
+    color:var(--ink);
+    opacity:0.85;
+    margin:0 0 32px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:14px 24px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    border:2px solid var(--ink);
+    transition:transform .15s, background .15s, color .15s;
+  }
+  .btn-solid{background:var(--rust); color:var(--cream-light); border-color:var(--rust);}
+  .btn-solid:hover{background:var(--rust-dark); transform:translateY(-2px);}
+  .btn-outline{background:transparent; color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--cream-light); transform:translateY(-2px);}
+
+  .hero-facts{display:flex; gap:28px; flex-wrap:wrap;}
+  .hero-fact{font-family:'IBM Plex Mono', monospace; font-size:12.5px;}
+  .hero-fact .num{display:block; font-family:'Alfa Slab One', cursive; font-size:26px; color:var(--pump-green); margin-bottom:2px;}
+
+  /* Gas pump illustration - signature element */
+  .pump-wrap{display:flex; justify-content:center; align-items:flex-end;}
+  .pump{width:100%; max-width:320px; height:auto;}
+  .pump-dial-num{font-family:'IBM Plex Mono', monospace; font-weight:600;}
+
+  /* ===== Strip divider ===== */
+  .strip{
+    background:var(--pump-green);
+    color:var(--cream-light);
+    padding:14px 0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .strip-inner{
+    display:inline-flex;
+    gap:40px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    animation:scroll-strip 28s linear infinite;
+  }
+  @keyframes scroll-strip{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .strip-inner span::after{content:'•'; margin-left:40px; color:var(--mustard);}
+
+  /* ===== Story section ===== */
+  .story{padding:90px 0; border-bottom:3px solid var(--ink);}
+  .story-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--rust);
+    margin:0 0 14px;
+  }
+  h2.section-title{
+    font-family:'Alfa Slab One', cursive;
+    font-size:clamp(28px, 4vw, 40px);
+    line-height:1.08;
+    margin:0 0 20px;
+    color:var(--ink);
+  }
+  .story p{font-size:16.5px; margin:0 0 16px; max-width:58ch;}
+  .story-stat-card{
+    background:var(--cream-light);
+    border:2px solid var(--ink);
+    padding:26px;
+    margin-top:10px;
+  }
+  .story-stat-card .stat-top{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+  .story-stat-card .stat-num{font-family:'Alfa Slab One', cursive; font-size:38px; color:var(--rust);}
+  .story-stat-card .stat-label{font-family:'IBM Plex Mono', monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:0.06em;}
+  .story-stat-card p{font-size:14px; margin:10px 0 0; opacity:0.8;}
+
+  /* ===== Menu board ===== */
+  .menu-section{padding:90px 0; background:var(--ink); color:var(--cream-light); border-bottom:3px solid var(--ink);}
+  .menu-section .section-label{color:var(--mustard);}
+  .menu-section h2.section-title{color:var(--cream-light);}
+  .menu-intro{max-width:56ch; opacity:0.75; font-size:16.5px; margin:0 0 48px;}
+  .menu-board{
+    border:2px solid rgba(250,246,238,0.25);
+    background:rgba(250,246,238,0.03);
+    padding:6px;
+  }
+  .menu-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:20px;
+    align-items:baseline;
+    padding:20px 26px;
+    border-bottom:1px dashed rgba(250,246,238,0.25);
+  }
+  .menu-row:last-child{border-bottom:none;}
+  .menu-item-name{
+    font-family:'Lora', serif;
+    font-weight:600;
+    font-size:19px;
+  }
+  .menu-item-desc{
+    display:block;
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:14.5px;
+    opacity:0.65;
+    margin-top:4px;
+    font-weight:400;
+  }
+  .menu-item-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--mustard);
+    display:inline-block;
+    margin-top:6px;
+  }
+  .menu-price{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:17px;
+    color:var(--mustard);
+    white-space:nowrap;
+  }
+  .menu-note{
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    opacity:0.55;
+    letter-spacing:0.03em;
+  }
+
+  /* ===== Hours & Visit ===== */
+  .visit{padding:90px 0; border-bottom:3px solid var(--ink);}
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; border:2px solid var(--ink);}
+  .visit-col{padding:34px 30px; border-right:2px solid var(--ink);}
+  .visit-col:last-child{border-right:none;}
+  .visit-col h3{
+    font-family:'Alfa Slab One', cursive;
+    font-size:18px;
+    margin:0 0 18px;
+    color:var(--rust);
+  }
+  .hours-row{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:7px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.today{color:var(--rust); font-weight:600;}
+  .visit-col p{font-size:15px; margin:0 0 10px;}
+  .visit-col .big-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    text-decoration:underline;
+    text-underline-offset:4px;
+    word-break:break-word;
+  }
+  .addr-block{margin-bottom:20px;}
+
+  /* ===== Footer ===== */
+  footer{padding:40px 0; background:var(--cream-light);}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-brand{font-family:'Alfa Slab One', cursive; font-size:16px; color:var(--rust);}
+  .footer-meta{font-family:'IBM Plex Mono', monospace; font-size:12px; opacity:0.6;}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .pump-wrap{order:-1; max-width:200px; margin:0 auto 20px;}
+    .story-grid{grid-template-columns:1fr;}
+    .visit-grid{grid-template-columns:1fr;}
+    .visit-col{border-right:none; border-bottom:2px solid var(--ink);}
+    .visit-col:last-child{border-bottom:none;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <span>Highway 68, Salinas, CA &nbsp;•&nbsp; Open 7 Days &nbsp;•&nbsp; <strong>Est. in a 1930s gas station</strong></span>
+  </div>
+
+  <header>
+    <div class="wrap header-row">
+      <a href="#top" class="brand">Toro Place Cafe</a>
+      <nav>
+        <a href="#story">Our Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#visit">Hours &amp; Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">A roadside diner since the days of the gas pumps</p>
+        <h1 class="headline">Breakfast at the <em>old station</em> on Hwy 68.</h1>
+        <p class="hero-sub">Toro Place Cafe sits in a converted 1930s gas station just outside Salinas — vintage pumps still out front, cinnamon rolls the size of your fist inside. Come hungry, leave full, wave at Toro Park on your way out.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="tel:+18314841333">Call (831) 484-1333</a>
+          <a class="btn btn-outline" href="#menu">See the menu</a>
+        </div>
+        <div class="hero-facts">
+          <div class="hero-fact"><span class="num">4.5</span>on Google &amp; Yelp</div>
+          <div class="hero-fact"><span class="num">#10</span>of 200 in Salinas</div>
+          <div class="hero-fact"><span class="num">7</span>days a week</div>
+        </div>
+      </div>
+      <div class="pump-wrap">
+        <svg class="pump" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
+          <!-- base -->
+          <rect x="30" y="290" width="160" height="14" rx="2" fill="#2B2320"/>
+          <!-- body -->
+          <rect x="48" y="70" width="124" height="220" rx="10" fill="#A83C1E" stroke="#2B2320" stroke-width="4"/>
+          <!-- top cap -->
+          <rect x="40" y="50" width="140" height="26" rx="6" fill="#2F4A3C" stroke="#2B2320" stroke-width="4"/>
+          <!-- globe -->
+          <circle cx="110" cy="26" r="24" fill="#D4A017" stroke="#2B2320" stroke-width="4"/>
+          <text x="110" y="32" text-anchor="middle" font-family="Alfa Slab One" font-size="16" fill="#2B2320">TP</text>
+          <!-- neck -->
+          <rect x="103" y="46" width="14" height="10" fill="#2B2320"/>
+          <!-- dial face -->
+          <rect x="66" y="96" width="88" height="60" rx="4" fill="#F2EAD8" stroke="#2B2320" stroke-width="3"/>
+          <text x="110" y="122" text-anchor="middle" class="pump-dial-num" font-size="22" fill="#2B2320">EST.</text>
+          <text x="110" y="145" text-anchor="middle" class="pump-dial-num" font-size="22" fill="#A83C1E">1930s</text>
+          <!-- buttons -->
+          <circle cx="80" cy="180" r="7" fill="#D4A017" stroke="#2B2320" stroke-width="2.5"/>
+          <circle cx="110" cy="180" r="7" fill="#F2EAD8" stroke="#2B2320" stroke-width="2.5"/>
+          <circle cx="140" cy="180" r="7" fill="#D4A017" stroke="#2B2320" stroke-width="2.5"/>
+          <!-- stripe -->
+          <rect x="48" y="200" width="124" height="10" fill="#2F4A3C"/>
+          <rect x="48" y="222" width="124" height="4" fill="#2B2320" opacity="0.3"/>
+          <!-- hose -->
+          <path d="M172 240 C 205 240, 205 270, 190 285" stroke="#2B2320" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="190" cy="285" r="6" fill="#2B2320"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-inner mono">
+      <span>Cinnamon rolls fresh daily</span>
+      <span>Chili verde every Friday</span>
+      <span>Patio open for dogs</span>
+      <span>665 Monterey Salinas Hwy</span>
+      <span>Cinnamon rolls fresh daily</span>
+      <span>Chili verde every Friday</span>
+      <span>Patio open for dogs</span>
+      <span>665 Monterey Salinas Hwy</span>
+    </div>
+  </div>
+
+  <section class="story" id="story">
+    <div class="wrap story-grid">
+      <div>
+        <p class="section-label">The building</p>
+        <h2 class="section-title">Still has the gas pumps out front.</h2>
+      </div>
+      <div>
+        <p>Toro Place Cafe is a converted gas station from the 1920s and 30s — once the residence of the original owners, now a diner with the vintage pumps still standing sentry by the door. It's the kind of place where the front screen door opens like you're walking into someone's home, because for a while, you were.</p>
+        <p>Sitting right on Highway 68 between Monterey and Salinas, it's become the community's unofficial front porch — regulars on a first-name basis, a toy drive every year, and a patio that welcomes your dog along with your appetite.</p>
+        <div class="story-stat-card">
+          <div class="stat-top">
+            <span class="stat-num">500+</span>
+            <span class="stat-label mono">reviews, 4.4–4.5★</span>
+          </div>
+          <p>"Front door and screen opens like you're coming into someone's home." — a regular, on Tripadvisor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="wrap">
+      <p class="section-label">On the board</p>
+      <h2 class="section-title">A few things people drive out of their way for.</h2>
+      <p class="menu-intro">The full menu changes with the day — this is what regulars order without looking.</p>
+      <div class="menu-board">
+        <div class="menu-row">
+          <div>
+            <span class="menu-item-name">Biscuits &amp; Gravy</span>
+            <span class="menu-item-desc">Made from scratch, the way a gas-station diner should do it</span>
+          </div>
+          <span class="menu-price">MKT</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-item-name">Homemade Cinnamon Roll</span>
+            <span class="menu-item-desc">Bigger than it needs to be, on purpose</span>
+            <span class="menu-item-tag">Most ordered</span>
+          </div>
+          <span class="menu-price">MKT</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-item-name">Avocado Benedict</span>
+            <span class="menu-item-desc">Weekend regulars' favorite</span>
+          </div>
+          <span class="menu-price">MKT</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-item-name">Mediterranean Scramble</span>
+            <span class="menu-item-desc">Fresh, hearty, and always outstanding per the reviews</span>
+          </div>
+          <span class="menu-price">MKT</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-item-name">The Juicy Lucy</span>
+            <span class="menu-item-desc">Cheese-stuffed burger, lunch's answer to the cinnamon roll</span>
+          </div>
+          <span class="menu-price">MKT</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-item-name">Chili Verde</span>
+            <span class="menu-item-desc">Fridays only — ask what time it runs out</span>
+            <span class="menu-item-tag">Friday special</span>
+          </div>
+          <span class="menu-price">MKT</span>
+        </div>
+      </div>
+      <p class="menu-note">Prices marked MKT — swap in real menu pricing when handed off. Full menu available in-house.</p>
+    </div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <p class="section-label">Plan a visit</p>
+      <h2 class="section-title">Find us, know when we're open.</h2>
+      <br>
+      <div class="visit-grid">
+        <div class="visit-col">
+          <h3>Location</h3>
+          <div class="addr-block">
+            <p>665 Monterey Salinas Hwy<br>Salinas, CA 93908</p>
+          </div>
+          <a class="big-link" href="https://www.google.com/maps/search/?api=1&query=665+Monterey+Salinas+Hwy+Salinas+CA+93908" target="_blank" rel="noopener">Get directions →</a>
+        </div>
+        <div class="visit-col">
+          <h3>Hours</h3>
+          <div class="hours-row today"><span>Monday</span><span>7:00 – 1:30</span></div>
+          <div class="hours-row"><span>Tuesday</span><span>6:30 – 2:30</span></div>
+          <div class="hours-row"><span>Wednesday</span><span>6:30 – 2:30</span></div>
+          <div class="hours-row"><span>Thursday</span><span>6:30 – 2:30</span></div>
+          <div class="hours-row"><span>Friday</span><span>6:30 – 2:30</span></div>
+          <div class="hours-row"><span>Saturday</span><span>6:30 – 2:30</span></div>
+          <div class="hours-row"><span>Sunday</span><span>7:00 – 1:30</span></div>
+        </div>
+        <div class="visit-col">
+          <h3>Contact</h3>
+          <p>Call ahead for large groups — the patio fills up fast on weekends.</p>
+          <a class="big-link" href="tel:+18314841333">(831) 484-1333</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span class="footer-brand">Toro Place Cafe</span>
+      <span class="footer-meta mono">665 Monterey Salinas Hwy, Salinas, CA 93908 · (831) 484-1333</span>
+    </div>
+  </footer>
+
+</body>
+</html>
